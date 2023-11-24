@@ -30,7 +30,7 @@ SERVER_PASSWORD=$(openssl rand -base64 18 | tr -d /=+ | cut -c -18)
 
 # Configuration de base avec suffixe alÃ©atoire ajoutÃ© au label
 LABEL="debian-server-$RANDOM_SUFFIX"
-REGION="us-east"
+REGION="fr-par"
 PLAN="g6-nanode-1"
 IMAGE="linode/debian11"
 
