@@ -102,12 +102,15 @@ echo -e "${GREEN}Informations de connexion :${NC}"
 echo -e "Adresse IP : ${GREEN}$SERVER_IP${NC}"
 echo -e "Mot de passe : ${GREEN}$SERVER_PASSWORD${NC}"
 
+
+
 # Connexion SSH et installation de WireGuard
 sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no root@$SERVER_IP env NBCONF="$NBCONF" 'bash -s' << 'EOF'
 echo "L'argument passé est : $NBCONF"
 wget -O wireguard.sh https://get.vpnsetup.net/wg
 chmod +x wireguard.sh
 sudo bash wireguard.sh --auto
+
 
 for (( i=1; i<$NBCONF; i++ )); do
 sudo bash wireguard.sh <<ANSWERS
@@ -121,6 +124,8 @@ done
 
 
 apt update
+
+
 apt install apache2 -y
 
 cat > /etc/apache2/sites-available/wireguard.conf << 'APACHE_CONF'
@@ -151,13 +156,35 @@ a2ensite wireguard.conf
 systemctl reload apache2
 systemctl restart apache2
 
+EOF
 
+
+sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no root@$SERVER_IP env NBCONF="$NBCONF" 'bash -s' << 'EOF'
+
+sudo apt install php <<ANSWERS
+y
+ANSWERS
+done
+EOF
+
+sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no root@$SERVER_IP env NBCONF="$NBCONF" 'bash -s' << 'EOF'
+sudo apt install git <<ANSWERS
+y
+ANSWERS
+done
+EOF
+
+
+sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no root@$SERVER_IP env NBCONF="$NBCONF" 'bash -s' << 'EOF'
 rm /var/www/html/index.html
-cp client*.conf /var/www/html/
+git clone https://github.com/zgabi10103710/GUI-Directory.git
+cp -r GUI-Directory/* /var/www/html/
 
-chmod 644 /var/www/html/client*.conf
+cp client*.conf /var/www/html/Script
 
 
+chmod 777 /var/www/html/Script
+chmod 777 /var/www/html/Script/client*.conf
 
 EOF
 
