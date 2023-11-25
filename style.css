@@ -1,0 +1,105 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: #efefef;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin-top: 50px;
+    margin-bottom: 15px;
+    margin-right: 25px;
+    font-size: 1.5em;
+    color: #407DB8;
+    letter-spacing: 0.1em;
+    text-align: center;
+}
+
+.table {
+    width: 75%;
+    margin: 0 auto 50px auto;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #666;
+    color: #eee;
+    font-size: 0.75em;
+    letter-spacing: 0.3em;
+}
+
+tr:nth-child(even) {
+    background-color: #e6f0f6;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+a {
+    color: #407DB8;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+a:hover {
+    color: #163f65;
+}
+
+.folder:before {
+    content: '\1F4C1'; /* Folder icon */
+    margin-right: 7px;
+    font-size: 1.2em;
+}
+
+.file:before {
+    content: '\1F4C4'; /* File icon */
+    margin-right: 7px;
+    font-size: 1.2em;
+    opacity: 0.6;
+}
+
+.folder-name {
+    cursor: pointer;
+    color: #007BFF;
+    text-decoration: underline;
+}
+
+.folder-contents {
+    display: table;
+    padding-left: 20px;
+}
+
+.folder-contents-visible {
+    display: none;
+
+}
+
+.sub-table {
+    width: 100%;
+}
+
+.download {
+    width: 100%;
+    background: #437EB6;
+    text-align: center;
+    padding: 8px 0;
+}
+
+.download a {
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.download a:hover {
+    color: #163f65;
+}
